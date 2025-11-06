@@ -1,0 +1,38 @@
+[sqlfluff]
+# Set the base SQL dialect to BigQuery
+dialect = bigquery
+# Specify the templater to use for dbt files
+templater = dbt
+# Define paths to ignore (dbt creates these automatically)
+ignore_paths = 
+    target
+    dbt_packages
+
+# Configure the templater for dbt projects
+[sqlfluff:templater:dbt]
+# Path to the dbt project directory (usually where dbt_project.yml is)
+project_dir = .
+
+# Specify rules to disable if they conflict with your style
+[sqlfluff:rules]
+# Example: L010 forces keywords to UPPERCASE. You can change this to 'capitalise' or 'lower'
+keywords_policy = upper
+# Example: L003 is about indentation. Set your preferred tabs/spaces here.
+indentation_unit = space
+indentation_spaces_for_tab = 4
+
+# Target only the dbt models directory for linting
+[sqlfluff:L003]
+tab_not_allowed = False
+
+[sqlfluff:L014]
+# Ensures Jinja is handled correctly inside the SQL
+templated_html = False
+
+[sqlfluff:L020]
+# Disables rule about function names, often needed for complex jinja macros
+unquoted_identifiers_policy = lower
+
+[sqlfluff:L030]
+# Ensures all column aliases (AS) are present
+function_name_policy = upper
