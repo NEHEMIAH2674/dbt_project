@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: open_brewery_db # <--- The first argument of the {{ source() }} macro
+    # This name groups related raw tables. You might want to name it 'operations'
+    # if that's where all your raw data is, but 'open_brewery_db' is common practice.
+
+    # 🛑 CRITICAL FIX: Define the BigQuery dataset/schema where the raw data lives.
+    schema: operations 
+
+    tables:
+      - name: raw_breweries # <--- The second argument of the {{ source() }} macro
+        # Description is helpful for documentation
+        description: Raw data ingested from the Open Brewery DB API.
+        
+        # You can also add column-level metadata here
+        columns:
+          - name: id
+            description: Primary key from the source API.

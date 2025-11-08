@@ -31,6 +31,18 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   core_insights:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    staging:
+      +materialized: table
+      +schema: staging
+
+    core:
+      +materialized: table
+      +schema: core
+
+    analytics:
+      +materialized: table
+      +schema: analytics
+
+seeds:
+  core_insights:
+    +schema: staging

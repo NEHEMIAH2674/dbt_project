@@ -1,3 +1,4 @@
+   ---get refreshed_at.sql---
 {% macro get_refreshed_at() %}
     current_datetime('UTC+3')
 {% endmacro %}
